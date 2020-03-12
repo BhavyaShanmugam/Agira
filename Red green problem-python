@@ -1,0 +1,40 @@
+Red and Green Balls You have a square grid (NxN). Each cell of the grid has either a red ball or a green ball. Your job is to arrange the balls in such a way that all the red balls are either on or below the main diagonal. The main diagonal starts from cell 1x1 and ends at cell NxN. You have only one move which is to swap adjacent rows. You need to achieve the final arrangement in minimal number of moves. If it is not possible to come to a resolution by swapping then print -1 
+Input: 
+First line of input is the number of rows in grid. Rest are the lines in the grid 
+Ouput: 
+Minimum number of moves 
+
+Input 
+2 
+RG 
+RR 
+Output 
+0 
+
+Input 2 
+GR 
+RG 
+Output 
+1
+
+
+PROGRAM:
+n,moves=int(input()),0
+l=[list(input()) for i in range(n)]
+for i in range(n):
+    if(l[i].count('r')>i+1):
+        print('-1')
+        break
+    k=[]
+    for j in range(n):
+        if(l[i][j]=='r'):
+            k.append(j)
+    p=i
+    for j in range(len(k)):
+        if(k[j]>i):
+            while(p in k):
+                p=p-1
+            moves+=k[j]-p
+            p=p-1
+print(moves)
+            
